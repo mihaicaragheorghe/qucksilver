@@ -11,7 +11,7 @@ import (
 func main() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Printf("**WARNING** Could not load .env file")
+		log.Printf("**WARNING** Could not load .env file\n")
 	}
 
 	addr := ":" + os.Getenv("PORT")

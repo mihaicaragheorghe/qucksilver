@@ -20,7 +20,10 @@ func ProcessRESP(reader *bufio.Reader) (cmd string, args []interface{}, err erro
 	}
 
 	arr, ok := parsedData.([]interface{})
-	if !ok || len(arr) == 0 {
+	if !ok {
+		return parsedData.(string), nil, nil
+	}
+	if len(arr) == 0 {
 		return "", nil, ErrInvalidRESP
 	}
 
@@ -28,9 +31,7 @@ func ProcessRESP(reader *bufio.Reader) (cmd string, args []interface{}, err erro
 	if !ok {
 		return "", nil, fmt.Errorf("command must be a string")
 	}
-
-	args = arr[1:]
-	return cmd, args, nil
+	return cmd, arr[1:], nil
 }
 
 func ParseRESP(reader *bufio.Reader) (interface{}, error) {
