@@ -1,2 +1,3 @@
-# qucksilver
-A key-value caching database
+# Qucksilver
+
+Work in progress
